@@ -1,10 +1,50 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  # GET /home
+  def home
+    puts "\n******* home *******"
+    @users = User.all
+  end
+
   # GET /users
   # GET /users.json
   def index
+    puts "\n******* index *******"
     @users = User.all
+  end
+
+  def login_form
+    puts "\n******* login_form *******"
+    render :login_form
+  end
+
+  def login
+  	puts "\n******* signin *******"
+      @user = User.where(username: params[:username]).first
+  	if @user
+  		if @user.password == params[:password]
+  			  session[:user_id] = @user.id
+          @current_user = get_current_user
+          puts "\n******* signin successful *******"
+          puts "\ncurrent_user: #{@current_user.inspect}"
+  			flash[:notice] = "You've been signed in successfully."
+  			redirect_to '/userposts'
+  		else
+  			flash[:notice] = "Please check your password and try again."
+  			redirect_to "/login_form"
+  		end
+  	else
+  		flash[:notice] = "Please check your username and try again."
+  		redirect_to "/login_form"
+  	end
+  end
+
+  def logout
+    puts "\n****** logout ******"
+    session[:user_id] = nil
+    flash[:notice] = "You've sucessfully logged out"
+    redirect_to '/'
   end
 
   # GET /users/1
@@ -28,7 +68,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        session[:user_id] = @user.id
+        format.html { redirect_to "/userposts", notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -67,8 +108,18 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
+    def get_current_user
+      # puts "\n******* get_current_user *******"
+      if session[:user_id]
+        return User.find(session[:user_id])
+      else
+        puts "** NO CURRENT USER **"
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.fetch(:user, {})
+      puts "******* user_params *******"
+      params.require(:user).permit(:username, :password, :firstname, :lastname, :email, :imgsrc)
     end
 end

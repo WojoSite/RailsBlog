@@ -11,7 +11,14 @@
     </div>
   <% end %>
 
+
   <div class="actions">
+    <%= form.text_field :username, id: "username", class: "data-value", placeholder: "Username" %>
+    <%= form.text_field :password, id: "password", class: "data-value", placeholder: "Password" %>
+    <%= form.text_field :firstname, id: "firstname", class: "data-value", placeholder: "First Name" %>
+    <%= form.text_field :lastname, id: "lastname", class: "data-value", placeholder: "Last Name" %>
+    <%= form.text_field :email, id: "email", class: "data-value", placeholder: "Email" %>
+    <%= form.text_field :imgsrc, id: "imgsrc", class: "data-value", placeholder: "Image" %>
     <%= form.submit %>
   </div>
 <% end %>

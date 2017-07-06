@@ -2,13 +2,23 @@
 <html>
   <head>
     <title>RailsBlog</title>
+    <link href="/assets/pencil.png" rel="shortcut icon" type="image/x-icon" />
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+
+    <div id="navbar">
+      <%= link_to "Rails Blog", "/" %>
+      <div id="nav-items">
+        <%= render :partial => '/users/menu' %>
+      </div>
+    </div>
+
     <%= yield %>
+
   </body>
 </html>
