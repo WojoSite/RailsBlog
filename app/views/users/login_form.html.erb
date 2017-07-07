@@ -1,0 +1,11 @@
+<h1>Login Page!</h1>
+
+<%= form_with url: login_path do |form| %>
+  <div class="actions">
+    <%= form.text_field :username, id: "username", class: "data-value", placeholder: "Username" %>
+    <%= form.text_field :password, id: "password", class: "data-value", placeholder: "Password" %>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to "Need an account? Click here", new_user_path %>

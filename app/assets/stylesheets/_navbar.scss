@@ -1,0 +1,21 @@
+#navbar{
+  box-sizing: border-box;
+  height: 60px;
+  width: 100%;
+  background-color: gray;
+  #navbar-logo{
+    display: inline-block;
+    float: left;
+    margin: 0 20px;
+    line-height: 60px;
+    font-size: 24px;
+  }
+  #nav-items{
+    display: inline-block;
+    float: right;
+    .nav-item{
+      display: inline-block;
+      border: 1px solid black;
+    }
+  }
+}

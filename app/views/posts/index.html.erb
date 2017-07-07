@@ -1,10 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<% @posts.each_with_index do |post, index| %>
-  <% if post.user_id == @user.id %>
+<h1>Blog Feed</h1>
+
+<% @users.each_with_index do |user, index| %>
+  <% posts = user.posts %>
+  <% posts.order("comments.created_at desc") %>
+  <% posts.each_with_index do |post, index| %>
+    <% puts "\n======= POST INSPECT =======" %>
+    <% puts "post.inspect: #{post.inspect}" %>
     <h2><%= post.title %></h2>
-    <p>Created on <%= post.created_at.strftime('%b %d') %></p>
+    <p>By <%= link_to user.firstname + " "+ user.lastname, user_path(user) %> on <%= post.created_at.strftime('%b %d') %></p>
     <p><%= post.text %></p>
+
+
     <% comments = post.comments %>
     <% comments.each_with_index do |comment, index| %>
       <% if comment.post_id == post.id %>
@@ -16,6 +24,7 @@
             <p>By <%= user.firstname %> <%= user.lastname %> on <%= comment.created_at.strftime('%b %d') %></p>
           <% end %>
         <% end %>
+
       <% end %>
     <% end %>
 
@@ -35,8 +44,6 @@
       <input type="hidden" name="comment[post_id]" value="<%= post.id %>">
       <%= f.submit %>
     <% end %>
+
   <% end %>
 <% end %>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

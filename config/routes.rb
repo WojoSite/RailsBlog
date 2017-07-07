@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   get "/logout" => "users#logout"
 
-  get "/userposts" => "posts#index"
+  get "/blogfeed" => "posts#index"
+
+
 
   # === RESTful routes ===
   resources :users do

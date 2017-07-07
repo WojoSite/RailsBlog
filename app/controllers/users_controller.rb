@@ -29,7 +29,7 @@ class UsersController < ApplicationController
           puts "\n******* signin successful *******"
           puts "\ncurrent_user: #{@current_user.inspect}"
   			flash[:notice] = "You've been signed in successfully."
-  			redirect_to '/userposts'
+  			redirect_to '/blogfeed'
   		else
   			flash[:notice] = "Please check your password and try again."
   			redirect_to "/login_form"
@@ -50,6 +50,10 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @posts = Post.all
+    @comments = Comment.all
+    @comment = Comment.new
+    @users = User.all
   end
 
   # GET /users/new
@@ -69,7 +73,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
-        format.html { redirect_to "/userposts", notice: 'User was successfully created.' }
+        format.html { redirect_to "/blogfeed", notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
