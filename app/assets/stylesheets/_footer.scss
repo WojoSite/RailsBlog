@@ -1,0 +1,24 @@
+#footer{
+  position: fixed;
+  box-sizing: border-box;
+  bottom: 0;
+  margin-top: 20px;
+  height: 40px;
+  width: 100%;
+  background-color: gray;
+  #website{
+    float: left;
+    line-height: 40px;
+    margin-left: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+  }
+  #github-link{
+    float: right;
+    img{
+      height: 30px;
+      padding: 5px 10px;
+    }
+  }
+}

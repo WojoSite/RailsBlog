@@ -12,8 +12,6 @@ Rails.application.routes.draw do
 
   get "/blogfeed" => "posts#index"
 
-
-
   # === RESTful routes ===
   resources :users do
     resources :posts

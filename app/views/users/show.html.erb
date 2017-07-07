@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+
+<h1><%= @user.firstname %> <%= @user.lastname %></h1>
+<h2><%= @user.email %></h2>
+<h3>Member since <%= @user.created_at.strftime('%b %d, 20%y') %></h3>
+
 <% @posts.each_with_index do |post, index| %>
   <% if post.user_id == @user.id %>
     <h2><%= post.title %></h2>
