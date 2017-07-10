@@ -14,7 +14,10 @@
   <% end %>
 
   <div><%= label :title, "title" %><%= f.text_field :title %></div>
-  <div><%= label :text, "content" %><%= f.text_field :text %></div>
+  <div>
+    <%= label :text, "content" %>
+    <%= f.text_area(:text, size: '50x10') %>
+  </div>
   <input type="hidden" name="post[user_id]" value="<%= @user.id %>">
   <%= f.submit %>
 <% end %>

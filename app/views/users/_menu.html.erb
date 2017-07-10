@@ -3,7 +3,8 @@
 <% if session[:user_id] %>
   <%= link_to "New Post", new_user_post_path(:user_id), class:"nav-item" %>
   <%= link_to "Blog Feed", "/blogfeed", class:"nav-item" %>
-  <%= link_to "Users", users_path, class:"nav-item" %>
+  <%= link_to "User Directory", users_path, class:"nav-item" %>
+  <%= link_to "Your Profile", user_path(session[:user_id]), class:"nav-item" %>
   <%= link_to "Sign Out", "/logout", class:"nav-item" %>
 <% else %>
   <%= link_to "Sign In", "/loginform", class:"nav-item" %>

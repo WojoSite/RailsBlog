@@ -8,6 +8,7 @@ end
 #==== additional gems =====
 gem 'pg', '~> 0.21.0'
 gem 'rb-readline'
+gem 'geocoder'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

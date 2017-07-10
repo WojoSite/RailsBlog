@@ -1,15 +1,30 @@
 <p id="notice"><%= notice %></p>
 
+<%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <h1><%= @user.firstname %> <%= @user.lastname %></h1>
 <h2><%= @user.email %></h2>
 <h3>Member since <%= @user.created_at.strftime('%b %d, 20%y') %></h3>
+
+<% @addresses.each_with_index do |address, index| %>
+  <% if address.user_id == @user.id %>
+    <p><%= address.street %></p>
+    <p><%= address.city %>, <%= address.state %> <%= address.zip %></p>
+    <% if address.user_id == session[:user_id] %>
+      <%= link_to "Edit Address", edit_user_address_path(@user.id, address) %>
+    <% end %>
+  <% end %>
+<% end %>
+
 
 <% @posts.each_with_index do |post, index| %>
   <% if post.user_id == @user.id %>
     <h2><%= post.title %></h2>
     <p>Created on <%= post.created_at.strftime('%b %d') %></p>
     <p><%= post.text %></p>
+    <% if post.user_id == session[:user_id] %>
+      <%= link_to "Edit Post", edit_user_post_path(@user.id, post) %>
+    <% end %>
     <% comments = post.comments %>
     <% comments.each_with_index do |comment, index| %>
       <% if comment.post_id == post.id %>

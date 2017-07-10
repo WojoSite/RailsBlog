@@ -1,0 +1,18 @@
+<%= form_for([@user, @address]) do |form| %>
+  <% if address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(address.errors.count, "error") %> prohibited this address from being saved:</h2>
+      <ul>
+      <% address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.text_field :street, placeholder: "Username" %>
+  <%= form.text_field :city, placeholder: "City" %>
+  <%= form.text_field :state, placeholder: "State" %>
+  <%= form.text_field :zip, placeholder: "Zip Code" %>
+  <%= form.submit %>
+<% end %>

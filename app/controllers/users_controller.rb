@@ -54,6 +54,7 @@ class UsersController < ApplicationController
     @comments = Comment.all
     @comment = Comment.new
     @users = User.all
+    @addresses = Address.all
   end
 
   # GET /users/new
@@ -124,6 +125,6 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       puts "******* user_params *******"
-      params.require(:user).permit(:username, :password, :firstname, :lastname, :email, :imgsrc)
+      params.require(:user).permit(:username, :password, :password_confirmation, :firstname, :lastname, :email, :imgsrc)
     end
 end
