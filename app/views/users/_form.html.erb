@@ -20,6 +20,14 @@
     <%= form.text_field :lastname, id: "lastname", class: "data-value", placeholder: "Last Name" %>
     <%= form.text_field :email, id: "email", class: "data-value", placeholder: "Email" %>
     <%= form.text_field :imgsrc, id: "imgsrc", class: "data-value", placeholder: "Image" %>
+
+
+    <!-- <input type="text" class="data-value" name="address[street]" value="" placeholder="Street">
+    <input type="text" class="data-value" name="address[city]" value="" placeholder="City">
+    <input type="text" class="data-value" name="address[state]" value="" placeholder="State">
+    <input type="text" class="data-value" name="address[zip]" value="" placeholder="Zip">
+    <input type="hidden" class="data-value" name="address[user_id]" value="<%#= @user.id %>"> -->
+
     <%= form.submit %>
   </div>
 <% end %>
